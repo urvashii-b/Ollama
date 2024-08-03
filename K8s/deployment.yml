@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-app
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: ollama-app
+  template:
+    metadata:
+      labels:
+        app: ollama-app
+    spec:
+      containers:
+      - name: ollama-app
+        image: nishankkoul/ollama:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+
